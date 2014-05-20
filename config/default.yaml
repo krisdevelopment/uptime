@@ -1,0 +1,53 @@
+mongodb:
+  server:   localhost
+  database: uptime
+  user:     mongouser 
+  password: mongopass
+  connectionString:       # alternative to setting server, database, user and password separately
+
+monitor:
+  name:                   origin
+  apiUrl:                 'http://localhost:8082/api' # must be accessible without a proxy
+  pollingInterval:        10000      # ten seconds
+  timeout:                5000       # five seconds
+  userAgent:              NodeUptime/3.0 (https://github.com/fzaninotto/uptime)
+
+analyzer:
+  updateInterval:         60000      # one minute
+  qosAggregationInterval: 600000     # ten minutes
+  pingHistory:            8035200000 # three months
+
+autoStartMonitor: true
+
+server:
+  port:     8082
+
+plugins:
+  - ./plugins/console
+  - ./plugins/patternMatcher
+  - ./plugins/httpOptions
+  - ./plugins/email
+  # - ./plugins/basicAuth
+
+email:
+  method:      SMTP  # possible methods are SMTP, SES, or Sendmail
+  transport:         # see https://github.com/andris9/nodemailer for transport options
+    service:   Gmail # see https://github.com/andris9/Nodemailer/blob/master/lib/wellknown.js for well-known services
+    auth:            
+      user:       ' info@krislagraff.com'
+      pass:        'Toffer764+'
+  event:
+    up:        true
+    down:      true
+    paused:    false
+    restarted: false
+  message:           
+    from:            'info@krislagraff.com'
+    to:              'info@krislagraff.com'
+  dashboardUrl: 'http://localhost:8082'
+
+basicAuth:
+  username:    admin
+  password:    password
+verbose: true # only used in dev
+
