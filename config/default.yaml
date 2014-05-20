@@ -27,6 +27,7 @@ plugins:
   - ./plugins/patternMatcher
   - ./plugins/httpOptions
   - ./plugins/email
+  # - ./plugins/email
   # - ./plugins/basicAuth
 
 email:
@@ -51,3 +52,4 @@ basicAuth:
   password:    password
 verbose: true # only used in dev
 
+verbose: true # only used in dev
